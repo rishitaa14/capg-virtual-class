@@ -6,6 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>Retrieve Trainee</title>
 </head>
+<body>
 <body style="margin-left: 400px;margin-top: 50px">
 <form action="retrieve" method="get" >
   <h2>Retrieve Operation</h2>
@@ -30,6 +31,8 @@
 </c:if>
 
 
+
+</body>
 
 </body>
 </html>

@@ -25,9 +25,6 @@ Please enter trainee ID
 
 
 </table>
-
-
-
 </form>
 
 </body>
