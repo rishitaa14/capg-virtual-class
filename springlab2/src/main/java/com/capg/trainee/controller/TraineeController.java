@@ -1,5 +1,7 @@
 package com.capg.trainee.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.capg.trainee.bean.Trainee;
-
 import com.capg.trainee.service.TraineeService;
 
 @Controller
@@ -28,9 +29,10 @@ public class TraineeController {
 		return "login";
 	}
 
-	/*
-	 * @GetMapping("/manage") public String adminManage() { return "manage"; }
-	 */
+	@GetMapping("/menu")
+	public String adminManage() {
+		return "menu";
+	}
 
 	@GetMapping("/add")
 	public String add() {
@@ -49,47 +51,47 @@ public class TraineeController {
 
 	@GetMapping("/retrive")
 	public String retrive() {
-		return "retrive";
+		return "retrieve";
 	}
 
 	@GetMapping("/retriveall")
 	public String retriveAll() {
-		return "retriveall";
+		return "retrieveall";
 	}
 
 	@PostMapping("/addtrainee")
-	//@ResponseBody
-	public String addTrainee(@ModelAttribute Trainee trainee, Model m) 
-	{
+
+	public String addTrainee(@ModelAttribute Trainee trainee, Model m) {
 
 		Trainee train = service.addTrainee(trainee);
-		m.addAttribute(train);
+		m.addAttribute("train", train);
 		return "Trainee added";
-       
+
 	}
 
 	@PostMapping("/deletetrainee")
-	@ResponseBody
+
 	public String deleteTrainee(@RequestParam("traineeId") int traineeId) {
 		service.deleteTrainee(traineeId);
 		return "trainee deleted";
 	}
 
 	@PutMapping("/modifytrainee")
-	@ResponseBody
-	public String modifyTrainee() {
+
+	public String modifyTrainee(@ModelAttribute Trainee trainee) {
+		service.updateTrainee(trainee);
+
 		return "trainee updated";
 	}
 
-	@GetMapping("/retrivetrainee")
-	@ResponseBody
-	public String retriveTrainee() {
-		return "trainee retrived";
+	@GetMapping("/retrievetrainee")
+	public ModelAndView retrieveTrainee(@RequestParam("traineeId") int id) {
+		return new ModelAndView("retrieveTrainee", "trainee", service.retrieveTrainee(id));
 	}
 
-	@GetMapping("/retriveallTrainee")
-	@ResponseBody
-	public String retriveAllTrainee() {
-		return "all trainee's retrived ";
+	@GetMapping("/retrieveallTrainee")
+
+	public ModelAndView retrieveAllTrainee() {
+		return new ModelAndView("retrieveAllTrainee", "traineeList", service.retrieveAllTrainee());
 	}
 }

@@ -1,6 +1,9 @@
 package com.capg.trainee.service;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,17 +22,27 @@ public class TraineeService {
 
 
 	public Trainee updateTrainee(Trainee trainee) {
-		return repo.save(trainee);
+		 Trainee newTrainee=repo.getOne(trainee.getTraineeId());
+		    newTrainee.setTraineeName(trainee.getTraineeName());
+		    newTrainee.setTraineeLocation(trainee.getTraineeLocation());
+		    newTrainee.setTraineeDomain(trainee.getTraineeDomain());
+		    repo.save(newTrainee);
+			return trainee;
 	}
 
-	public void deleteTrainee(int traineeId) {
+	public boolean deleteTrainee(int traineeId) {
 		repo.deleteById(traineeId);
+		return !repo.existsById(traineeId);
 
 	}
 
-	public Trainee retriveTrainee(int traineeId) {
+	public Trainee retrieveTrainee(int traineeId) {
 		
 		return repo.getOne(traineeId);
+	}
+	
+	public List<Trainee> retrieveAllTrainee() {
+		return repo.findAll();
 	}
 
 }

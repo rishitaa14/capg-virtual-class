@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<form action="http://localhost:8083/trainee/manage" method="get">
+<form action="http://localhost:8083/trainee/menu" method="get">
 
 <h1>Login Page</h1>
 <table class="col-md-4" border="1">
@@ -30,5 +31,6 @@
 </table>
 
 </form>
+
 </body>
 </html>
