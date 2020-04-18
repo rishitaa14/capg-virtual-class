@@ -1,7 +1,6 @@
 package com.capg.trainee.service;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class TraineeService {
 		return repo.getOne(traineeId);
 	}
 	
-	public List<Trainee> retrieveAllTrainee() {
+	public List<Trainee> retrieveAllTrainees(){
 		return repo.findAll();
 	}
 
